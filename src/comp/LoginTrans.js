@@ -5,16 +5,22 @@ import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
-
+import { useNavigate } from "react-router-dom";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const LoginTrans=()=> {
-
+  const history= useNavigate();
     const [values, setValues] = React.useState({
         password: "",
         showPassword: false,
       });
+      const handlesubmit=(event)=>{
+        event.preventDefault();
+        console.log("hiii");
+        history('/transporterhome');
       
+       
+      }
 
       const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
@@ -30,7 +36,7 @@ const LoginTrans=()=> {
     
         return (
             <div style={{width:"100vw",height:"100vh",backgroundColor:"grey"}}>
-            <form style={{width:"40%",marginLeft:"30%",paddingTop:"10%"}}>
+            <form style={{width:"40%",marginLeft:"30%",paddingTop:"10%"}} onSubmit={event=>handlesubmit(event)}>
                 <h3>Transporter Sign In</h3>
             
                 <div className="form-group">

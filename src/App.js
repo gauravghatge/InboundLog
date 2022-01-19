@@ -7,16 +7,20 @@ import LoginWare from "./comp/LoginWare"
 import Home from "./comp/Home"
 import Asscode from "./comp/Asscode"
 import AsHome from "./comp/AsHome"
+import TrHome from "./comp/TrHome"
+import Table from "./comp/Table"
+import AsseOrder from "./comp/AsseOrder"
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import MainNav from "./comp/NavBar/MainNav"
+import TrOrder from './comp/TrOrder';
+import StoreHome from './comp/StoreHome';
 
 // Main App.js
 
 function App() {
   return (
     <div className="App">
-      <MainNav />
+      
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -25,6 +29,10 @@ function App() {
         <Route exact path="Warehouselogin" element={<LoginWare />} />
         <Route exact path="ass" element={<Asscode />} />
         <Route exact path="assemblyhome" element={<AsHome />} />
+        <Route exact path="warehousehome" element={<StoreHome />} />
+        <Route exact path="transporterhome" element={<TrHome />} />
+        <Route exact path="assemblyorderlog" element={<AsseOrder />} />
+        <Route exact path="transporterorderlog" element={<TrOrder />} />
       </Routes>
     </BrowserRouter>
     </div>

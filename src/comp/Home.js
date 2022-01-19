@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Outlet, Link } from "react-router-dom";
 import Table from "./Table"
+import Tab from "./Tab"
 import AssemblyAreaCode from "./AssemblyAreaCode"
 import Mapper from "./Mapper"
 

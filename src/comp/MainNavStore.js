@@ -3,7 +3,7 @@ import React from 'react'
   import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
   
 
-class BootstrapNavbar extends React.Component{
+class MainNavStore extends React.Component{
 
     render(){
         return(
@@ -16,8 +16,6 @@ class BootstrapNavbar extends React.Component{
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse className="justify-content-end">
                                     <Nav className="mr-auto" >
-                                    <Nav.Link href="/">Home</Nav.Link>
-                                    
                                     <Button >Logout</Button>
                                     </Nav>
                                     
@@ -33,4 +31,4 @@ class BootstrapNavbar extends React.Component{
     }
 }
 
-export default BootstrapNavbar;
+export default MainNavStore;
