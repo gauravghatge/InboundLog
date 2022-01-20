@@ -8,7 +8,7 @@ export default class StoreHome extends Component {
         return (
             <div>
                 <MainNavStore> </MainNavStore>
-                <div>Parking Area</div>
+                <div><h2>Parking Area</h2></div>
                 <Mapper></Mapper>
                 <div>PickUp Notification</div>
                 <TabStore></TabStore>

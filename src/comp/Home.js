@@ -4,6 +4,7 @@ import Table from "./Table"
 import Tab from "./Tab"
 import AssemblyAreaCode from "./AssemblyAreaCode"
 import Mapper from "./Mapper"
+import Parkimg from './Parkimg';
 
 export default class Home extends Component {
     render() {
@@ -25,12 +26,7 @@ export default class Home extends Component {
           </li>
         </ul>
       </nav>
-      
-      
-      
-      
-       
-      
+      <Parkimg></Parkimg>
       </>
     
         
