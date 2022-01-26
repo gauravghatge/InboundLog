@@ -1,18 +1,22 @@
 import React, { Component } from 'react'
-import MainNavStore from './MainNavStore'
-import Mapper from './Mapper'
 import TabStore from './TabStore'
-
-export default class StoreHome extends Component {
+import Mapper from './Mapper'
+import MainNavStore from './MainNavStore'
+export default class TrHome extends Component {
     render() {
         return (
-            <div>
-                <MainNavStore> </MainNavStore>
-                <div><h2>Parking Area</h2></div>
-                <Mapper></Mapper>
-                <div>PickUp Notification</div>
-                <TabStore></TabStore>
-            </div>
+            <>
+                <MainNavStore />
+                <div style={{width:"100%",display:"flex",paddingTop:"5"}}>
+                <div style={{width:"50%"}}>
+                <Mapper />
+                    </div>
+                    <div style={{width:"50%"}}>
+                    <TabStore />
+                </div>
+                </div>
+                
+            </>
         )
     }
 }

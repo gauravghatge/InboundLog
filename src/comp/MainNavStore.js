@@ -13,6 +13,7 @@ class MainNavStore extends React.Component{
                         
                             <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
                                 <Navbar.Brand href="/">Smart Inbound Logistics</Navbar.Brand>
+                                <h2 style = {{color:"#fff", marginLeft:"20%"}}> StoreKeeper Home</h2>
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse className="justify-content-end">
                                     <Nav className="mr-auto" >

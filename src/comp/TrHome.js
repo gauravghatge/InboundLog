@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
-import MainNavTr from './MainNavTr'
-import Mapper from './Mapper'
 import TabTr from './TabTr'
-
-const TrHome=()=> {
-            return (
-            <div>
-                <MainNavTr></MainNavTr>
-                <div><h1>Parking Area</h1></div>
+import Mapper from './Mapper'
+import MainNavTr from './MainNavTr'
+export default class TrHome extends Component {
+    render() {
+        return (
+            <>
+                <MainNavTr />
+                <div style={{width:"100%",display:"flex",paddingTop:"5"}}>
+                <div style={{width:"50%"}}>
                 <Mapper />
-                <div><h1>Current Orders</h1></div>
-                <TabTr></TabTr>
+                    </div>
+                    <div style={{width:"50%"}}>
+                    <TabTr />
+                </div>
+                </div>
                 
-            </div>
+            </>
         )
-    
+    }
 }
-export default TrHome;

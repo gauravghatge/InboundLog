@@ -7,73 +7,138 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import { createBrowserHistory as history} from 'history';
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import axios from "axios";
+import qs from "qs";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-const LoginAsse=(props)=> {
+
+
+const LoginAsse=()=>{
   const history= useNavigate();
-    const [values, setValues] = React.useState({
-        password: "",
-        showPassword: false,
-      });
-      const handlesubmit=(event)=>{
-        event.preventDefault();
-        console.log("hiii");
+  const{useState}=React;
+  const[inputtext,setinputtext]=useState({
+  username:"",
+  password:""
+  });
+  
+  const[warnusername,setwarnusername]=useState(false);
+  const[warnpassword,setwarnpassword]=useState(false);
+  const[tr,settr]=useState("");
+  const[eye,seteye]=useState(true);
+  const[password,setpassword]=useState("password");
+  const[type,settype]=useState(false);
+  
+  const inputEvent=(event)=>{
+  const name=event.target.name;
+  const value=event.target.value;
+  setinputtext((lastValue)=>{
+  return{
+  ...lastValue,
+  [name]:value
+  }
+  });
+  
+  }
+  
+  
+  
+  const submitForm=(e)=>{
+  e.preventDefault();
+  setwarnusername(false);
+  setwarnpassword(false);
+  if(inputtext.username==""){
+  setwarnusername(true);
+  }
+  else if(inputtext.password==""){
+  setwarnpassword(true);
+  }
+  else{
+    
+
+    console.log("Hii");
+
+    var data = qs.stringify({
+      'username': inputtext.username,
+      'password': inputtext.password 
+    });
+    const config = {
+      method: 'post',
+      url: 'https://wadiacsi1.cognitonetworks.com/cognito/gettoken',
+      headers: { 
+        'Content-Type': 'application/x-www-form-urlencoded', 
+        'Cookie': 'sessionid=yu1hkififix57f44rpsgpvltfz5hd4b6'
+      },
+      data : data
+    };
+
+   
+    axios(config)
+    .then(function (response) {
+      const d=JSON.stringify(response.data);
+      if(response.data.success){
         history('/ass');
-      
-       
+      }else{
+        settr("Username or password is Incorrect");
       }
-      const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-      };
-      
-      const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-      };
-      
-      const handlePasswordChange = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
-      };
+    })
+
+    .catch(function (error) {
+      console.log(error);
+    });
+
     
-        return (
-            <div style={{width:"100vw",height:"100vh",backgroundColor:"grey"}}>
-            <form style={{width:"40%",marginLeft:"30%",paddingTop:"10%"}} onSubmit={event=>handlesubmit(event)}>
-                <h3>Assembler Sign In</h3>
-            
-                <div className="form-group">
-                    <label>User ID</label>
-                    <input  className="form-control" placeholder="Enter User ID" required ={true}/>
-                </div>
 
-                <div className="form-group">
-                <InputLabel htmlFor="standard-adornment-password">
-        Enter your Password
-      </InputLabel>
-      <Input
-        type={values.showPassword ? "text" : "password"}
-        onChange={handlePasswordChange("password")}
-        value={values.password}
-        required ={true}
-        endAdornment={
-          <InputAdornment position="end">
-            <IconButton
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            >
-              {values.showPassword ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-          </InputAdornment>
-        }
-      />
-                </div>
 
-                
-
-                <button type="submit" className="btn btn-primary btn-block" >Submit</button>
-                
-            </form>
-            </div>
-        );
     
-}
+  }
+  
+  }
+  
+  const Eye=()=>{
+  if(password=="password"){
+  setpassword("text");
+  seteye(false);
+  settype(true);
+  }
+  else{
+  setpassword("password");
+  seteye(true);
+  settype(false);
+  }
+  }
+  
+  
+  return(
+  <>
+      <div className="container" style={{backgroundColor: "#c1d6f7"}}>
+          <div className="card">
+              <div className="text">
+                  
+                  <p style={{color: "black"}}>Sign In</p>
+              </div>
+              <form onSubmit={submitForm}>
+                  <div className="input-text">
+                      <input type="text" className={` ${warnusername ? "warning" : "" }`} placeholder="Enter your Username" value={inputtext.username} onChange={inputEvent} name="username" />
+                      <i className="fa fa-envelope"></i>
+  
+                  </div>
+                  <div className="input-text">
+                      <input type={password} className={` ${warnpassword ? "warning" : "" } ${type ? "type_password" : "" }`} placeholder="Enter your password" value={inputtext.password} onChange={inputEvent} name="password" />
+                      <i className="fa fa-lock"></i>
+                      <i onClick={Eye} className={`fa ${eye ? "fa-eye-slash" : "fa-eye" }`}></i>
+                  </div>
+                  <div style={{fontSize:"15px",color:"red"}} >{tr}</div>
+                  <div className="buttons">
+                      <button type="submit">Sign in</button>
+                  </div>
+                  
+              </form>
+          </div>
+      </div>
+  </> 
+  );
+  }
 
-export default LoginAsse;
+  export default LoginAsse;
+  

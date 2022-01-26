@@ -14,6 +14,7 @@ import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import TrOrder from './comp/TrOrder';
 import StoreHome from './comp/StoreHome';
+import Parkimg from './comp/Parkimg';
 
 // Main App.js
 
@@ -23,10 +24,9 @@ function App() {
       
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="Assemblylogin" element={<LoginAsse />} />
-        <Route exact path="Transporterlogin" element={<LoginTrans />} />
-        <Route exact path="Warehouselogin" element={<LoginWare />} />
+        <Route exact path="/" element={<LoginAsse />} />
+        <Route exact path="/test" element={<Parkimg />} />
+       
         <Route exact path="ass" element={<Asscode />} />
         <Route exact path="assemblyhome" element={<AsHome />} />
         <Route exact path="warehousehome" element={<StoreHome />} />
@@ -35,6 +35,7 @@ function App() {
         <Route exact path="transporterorderlog" element={<TrOrder />} />
       </Routes>
     </BrowserRouter>
+    
     </div>
     
   );

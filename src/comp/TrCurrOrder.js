@@ -4,8 +4,10 @@ const tableStyle = {
     border: '1px solid black',
     borderCollapse: 'collapse',
     textAlign: 'center',
-    width: '100%'
-}
+    width: '50%',
+    marginLeft:'auto',
+    marginRight:'auto'
+};
 
 const tdStyle = {
     border: '1px solid #85C1E9',
@@ -17,7 +19,9 @@ const thStyle = {
     border: '1px solid #3498DB',
     background: '#3498DB',
     color: 'white',
-    padding: '5px'
+    padding: '5px',
+    marginLeft:'auto',
+    marginRight:'auto'
 };
 
 const Table1 = ({ id, columns, data }) => (

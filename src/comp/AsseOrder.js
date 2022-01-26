@@ -4,13 +4,18 @@ import Table from "./Table"
 export default class AsseOrder extends Component {
     render() {
         return (
-            <div>
+            <>
                 <SimplenavAss></SimplenavAss>
+                <div > 
+
+                
                 <div>
                 <h3>Order Log</h3>
                 </div>
-                <Table />            
+                <div style={{overflowX:"auto",width:"70%",overflowY:"auto",height:"50%",marginRight:"15%",marginLeft:"15%"}}>
+                    <Table/></div>        
                 </div>
+                </>
         )
     }
 }

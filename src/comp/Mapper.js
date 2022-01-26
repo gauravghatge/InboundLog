@@ -10,10 +10,10 @@ const clickedon=(area)=>{
 }
   const Mapper = props => {
   const URL = '/parking.jpeg';
-  const [x, setx] = useState(35);
-  const [y, sety] = useState(40);
-  const [x2, setx2] = useState(80);
-  const [y2, sety2] = useState(130);
+  const [x, setx] = useState(27);
+  const [y, sety] = useState(36);
+  const [x2, setx2] = useState(45);
+  const [y2, sety2] = useState(81);
 
   
   
@@ -26,9 +26,15 @@ const clickedon=(area)=>{
     ]
   };
   
-  return <div style={{width:"100%",overflowX:"auto",overflowY:"auto",height:"100vh"}}>
-    <ImageMapper src={URL} map={MAP} width={500} onClick={area => alert("Order ID -123 , Engine - Maruti")}/>
+  return(
+    <>
+    <h3>Parking Area</h3>
+  <div style={{overflowX:"auto",width:"70%",overflowY:"auto",height:"450px",marginRight:"15%",marginLeft:"15%"}}>
+    
+    <ImageMapper src={URL} map={MAP} onClick={area => alert("Order ID -123 , Engine - Maruti")}/>
     </div>
+    </>
+  )
 }
 
 export default Mapper;

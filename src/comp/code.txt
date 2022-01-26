@@ -1,0 +1,23 @@
+var axios = require('axios');
+var qs = require('qs');
+var data = qs.stringify({
+  'username': 'kedaringale234@gmail.com',
+  'password': 'QBN6NgQNTNrh' 
+});
+var config = {
+  method: 'post',
+  url: 'https://wadiacsi1.cognitonetworks.com/cognito/gettoken',
+  headers: { 
+    'Content-Type': 'application/x-www-form-urlencoded', 
+    'Cookie': 'sessionid=yu1hkififix57f44rpsgpvltfz5hd4b6'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});

@@ -6,6 +6,7 @@ import React from 'react'
 class MainNavAssem extends React.Component{
 
     render(){
+        console.log(this.props.data);
         return(
             <div>
                 <div className="row">
@@ -13,6 +14,7 @@ class MainNavAssem extends React.Component{
                         
                             <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
                                 <Navbar.Brand href="/">Smart Inbound Logistics</Navbar.Brand>
+                                <h2 style = {{color:"#fff", marginLeft:"20%"}}> Assembly {this.props.data}</h2>
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse className="justify-content-end">
                                     <Nav className="mr-auto" >

@@ -4,7 +4,7 @@ const tableStyle = {
     border: '1px solid black',
     borderCollapse: 'collapse',
     textAlign: 'center',
-    width: '100%'
+   
 }
 
 const tdStyle = {
@@ -17,7 +17,8 @@ const thStyle = {
     border: '1px solid #3498DB',
     background: '#3498DB',
     color: 'white',
-    padding: '5px'
+    padding: '5px',
+     
 };
 
 
@@ -27,22 +28,34 @@ const thStyle = {
     
        
   const data = [
-    { id: 1, assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
-    { id: 2, assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
-    { id: 3, assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
-    { id: 4, assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' }
+    { id: 1,areacode:'P1', assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 2,areacode:'P2', assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 3, areacode:'P4',assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 4, areacode:'P6',assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 5,areacode:'P1', assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 6,areacode:'P2', assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 7, areacode:'P4',assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 8, areacode:'P6',assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 9,areacode:'P1', assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 10,areacode:'P2', assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 11, areacode:'P4',assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' },
+    { id: 12, areacode:'P6',assetinf: 'Kate',  placetimestamp: '10-04-19 12:00:17', acktimestamp: '10-04-19 12:00:17',delivtimestamp:'10-04-19 12:00:17' }
   ];
   
         return (
-            <div>
+       <> 
+            <h3>Current Orders</h3>
+            <div style={{overflowX:"auto",width:"100%",overflowY:"auto",height:"450px"}}>
                 <table  style={tableStyle}>
                 <thead>
                 <tr>
                     <th style={thStyle}>Order ID</th>
+                    <th style={thStyle}>Assembly Area Code</th>
                     <th style={thStyle}>Asset Info</th>
-                    <th style={thStyle}>Order Placed TT</th>
-                    <th style={thStyle}>Order Ack TT</th>
-                    <th style={thStyle}>Status</th>
+                    
+                    <th style={thStyle}>Order Placed TImeStamp</th>
+                    <th style={thStyle}>Order Acknowledge TimeStamp</th>
+                    <th style={thStyle}>Delivery Confirmation Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,7 +63,9 @@ const thStyle = {
                         data.map((item) => (
                             <tr key={item.id}>
                                 <td style={tdStyle}>{item.id}</td>
+                                <td style={tdStyle} >{item.areacode}</td>
                                 <td style={tdStyle} >{item.assetinf}</td>
+                                
                                 <td style={tdStyle}>{item.placetimestamp}</td>
                                 <td style={tdStyle}>{item.acktimestamp}</td>
                                 <td style={tdStyle}><button>YES</button></td>
@@ -61,10 +76,9 @@ const thStyle = {
                 </tbody>
         
             </table>
-            </div>
+            </div></> 
         )
- 
-           
+ }          
     
-}
+
 export default TotalOrd;
