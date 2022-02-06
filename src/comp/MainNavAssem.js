@@ -1,10 +1,10 @@
 import React from 'react'
-
-  import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
+import { useNavigate } from "react-router-dom";
+import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
   
 
 class MainNavAssem extends React.Component{
-
+   
     render(){
         console.log(this.props.data);
         return(
@@ -21,7 +21,7 @@ class MainNavAssem extends React.Component{
                                     <Nav className="mr-auto" >
                                    
                                     <Nav.Link href="/assemblyorderlog" style={{Color:"white"}}>Order Log</Nav.Link>
-                                    <Button >Logout</Button>
+                                    <Button href='/' >Logout</Button>
                                     </Nav>
                                     
                                 </Navbar.Collapse>

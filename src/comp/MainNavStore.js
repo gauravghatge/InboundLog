@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useNavigate } from "react-router-dom";
   import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
   
 
@@ -18,7 +18,7 @@ class MainNavStore extends React.Component{
                                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                 <Navbar.Collapse className="justify-content-end">
                                     <Nav className="mr-auto" >
-                                    <Button >Logout</Button>
+                                    <Button href='/' >Logout</Button>
                                     </Nav>
                                     
                                 </Navbar.Collapse>

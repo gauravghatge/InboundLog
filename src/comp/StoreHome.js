@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TabStore from './TabStore'
 import Mapper from './Mapper'
 import MainNavStore from './MainNavStore'
+import { useNavigate } from "react-router-dom";
 export default class TrHome extends Component {
     render() {
         return (

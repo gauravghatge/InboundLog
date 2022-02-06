@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useNavigate } from "react-router-dom";
   import { Navbar,Nav,NavDropdown,Form,FormControl,Button } from 'react-bootstrap'
   
 
@@ -19,7 +19,7 @@ class SimplenavTr extends React.Component{
                                     <Nav className="mr-auto" >
                                     <Nav.Link href="/transporterhome">Home</Nav.Link>
                                     
-                                    <Button >Logout</Button>
+                                    <Button href='/'>Logout</Button>
                                     </Nav>
                                     
                                 </Navbar.Collapse>
