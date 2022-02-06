@@ -10,7 +10,7 @@ import {useLocation} from 'react-router-dom';
             <>
             
                 <MainNavAssem data={location.state.name}/>
-                <div style={{width:"100%",display:"flex",paddingTop:"5"}}>
+                <div style={{width:"100%",height:"100vh",display:"flex",paddingTop:"5"}}>
                 <div style={{width:"50%"}}>
                 <Mapper />
                     </div>
