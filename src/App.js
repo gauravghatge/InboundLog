@@ -25,7 +25,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<LoginAsse />} />
-        <Route exact path="/test" element={<Parkimg />} />
+        <Route exact path="/test" element={<AsHome />} />
        
         <Route exact path="ass" element={<Asscode />} />
         <Route exact path="assemblyhome" element={<AsHome />} />

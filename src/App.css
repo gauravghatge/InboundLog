@@ -1,16 +1,17 @@
 
 #root{
-  background-color: #c1d6f7;
+  background-color:#cccccc ;
+
 }
 
 .body{
   color: rgb(15, 7, 7);
-  background-color: #c1d6f7;
+  background-color: #cccccc;
 }
 
 .App {
   text-align: center;
-  background-color: #c1d6f7;
+  background-color: #cccccc;
   color: rgb(15, 7, 7);
 }
 
@@ -82,6 +83,7 @@ color: #000;
 
 .container {
     min-height: 100vh;
+    min-width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
