@@ -54,6 +54,14 @@ const LoginAsse=()=>{
   setwarnpassword(true);
   }
   else{
+
+    if(inputtext.username=="sk@gmail.com" && inputtext.password=="test"){
+      history('/warehousehome');
+    }
+
+    if(inputtext.username=="tr@gmail.com" && inputtext.password=="test"){
+      history('/transporterhome');
+    }
     
 
     console.log("Hii");
