@@ -7,7 +7,7 @@ export default class TrHome extends Component {
         return (
             <>
                 <MainNavTr />
-                <div style={{width:"100%",display:"flex",paddingTop:"5"}}>
+                <div style={{width:"100%",height:"100vh",display:"flex",paddingTop:"5"}}>
                 <div style={{width:"50%"}}>
                 <Mapper />
                     </div>
