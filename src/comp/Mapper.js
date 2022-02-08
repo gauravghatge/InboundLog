@@ -33,8 +33,9 @@ const clickedon=(area)=>{
           doc=>{
               var s = doc.value;
               var match = s.split(';')
-              p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: "green", fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7]} 
-              
+              var col = match[7] == "NULL" ? "red": "green"
+              p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: col, fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8]}
+    
           }
       )
       data.push(p)
@@ -66,8 +67,9 @@ axios(config1)
                     doc=>{
                         var s = doc.value;
                         var match = s.split(';')
-                        p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: "green", fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7]}
-                        
+                        var col = match[7] == "NULL" ? "red": "green"
+                        p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: col, fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8]}
+  
                     }
                 )
                 data.push(p)
@@ -100,7 +102,7 @@ const getTipPosition=(area)=> {
     <h3>Parking Area</h3>
   <div style={{overflowX:"auto",width:"70%",overflowY:"auto",height:"450px",marginRight:"15%",marginLeft:"15%"}}>
     
-    <ImageMapper src={URL} map={MAP} onClick={area => alert(area.tri)} 
+    <ImageMapper src={URL} map={MAP} onClick={area => alert(area.ai)} 
     onMouseEnter={area => {seth(area.ai)}} onMouseLeave={area => sethoverArea(null)}/>
     
     

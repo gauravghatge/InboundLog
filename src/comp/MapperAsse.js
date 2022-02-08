@@ -49,8 +49,9 @@ const clickedon=(area)=>{
           doc=>{
               var s = doc.value;
               var match = s.split(';')
-              p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: "green", fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8]} 
-              
+              var col = match[7] == "NULL" ? "red": "green"
+              p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: col, fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8]}
+  
           }
       )
       data.push(p)
@@ -80,7 +81,8 @@ axios(config1)
                     doc=>{
                         var s = doc.value;
                         var match = s.split(';')
-                        p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: "green", fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8]}
+                        var col = match[7] == "NULL" ? "red": "green"
+                        p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: col, fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8]}
                         
                     }
                 )
@@ -126,8 +128,21 @@ const [obj, setobj] = useState(null);
 const [an, setan] = useState("null");
 
 const onClick = async () => {
+ 
   
-  const result = await confirm(`Do you want to order following asset:${tt}`, ops);
+if(tt=="NULL"){
+  alert("Parking Spot is Empty!!!")
+  return
+}
+  
+
+
+const result = await confirm(`Do you want to order following asset:${tt}`, ops);
+
+  
+
+
+
   if (result) {
     var data = { "entityid":"2203",
         "entityName":"Curr_Order1",
@@ -135,7 +150,7 @@ const onClick = async () => {
         "gatewayid":"Sub_Assembly_Parking",
             "status":false,
               "datastreams":[{ "name":"Current_Order",
-                          "value":`A456_${new Date().toDateString()};A456;${objo.ai};${new Date().toDateString()};Yet to acknowledge;No;${objo.pa}`,
+                          "value":`A456_${new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now())};A456;${objo.ai};${new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now())};Yet to acknowledge;No;${objo.pa}`,
                           "units":"",            "ContentFormat":"",
                           "type": "String"        }      ]};
     var config = {

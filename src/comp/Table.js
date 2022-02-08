@@ -36,7 +36,7 @@ const thStyle = {
 useEffect(()=>{
 var config = {
   method: 'get',
-  url: 'https://wadiacsi1.cognitonetworks.com/cognito/entityweb/strdatastreamTimeGraph/2201/?entity_id=2201&name=Order_Inf&start_date=2021-12-31%2011:17:00&end_date=2022-02-07%2007:05:50',
+  url: 'https://wadiacsi1.cognitonetworks.com/cognito/entityweb/strdatastreamTimeGraph/2204/?entity_id=2204&name=Order_Inf&start_date=2021-12-31%2011:17:00&end_date=2022-02-07%2007:05:50',
   headers: { 
     'Authorization': 'K9MkyEo5fM0YracivwW3 5xn-c646006da1934235e084 81 111'
   }

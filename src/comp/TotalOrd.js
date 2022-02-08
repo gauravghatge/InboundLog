@@ -28,8 +28,8 @@ const thStyle = {
 const [allorders, setorders] = useState([])
  
  const sendord=(item)=>{
-    var data1 = { "entityid":"2201",
-    "entityName":"Order_Inf",
+    var data1 = { "entityid":"2204",
+    "entityName":"Order_Inf6",
         "entityTag":"Generic",
     "gatewayid":"Sub_Assembly_Parking",
         "status":false,
@@ -39,7 +39,7 @@ const [allorders, setorders] = useState([])
                       "type": "String"        }      ]};
 var config = {
 method: 'post',
-url: 'https://wadiacsi1.cognitonetworks.com/cognito/entitycore/2201',
+url: 'https://wadiacsi1.cognitonetworks.com/cognito/entitycore/2204',
 headers: { 
 'Apikey': 'K9MkyEo5fM0YracivwW3', 
 'Authorization': 'K9MkyEo5fM0YracivwW3 5xn-c646006da1934235e084 81 111', 
@@ -51,6 +51,7 @@ data : data1
 axios(config)
 .then(function (response) {
 console.log(JSON.stringify(response.data));
+console.log("Data send")
 })
 .catch(function (error) {
 console.log(error);
@@ -118,7 +119,7 @@ console.log(error);
                                 
                                 <td style={tdStyle}>{item.at}</td>
                                
-                                <td style={tdStyle} ><button onClick={sendord(item)}>YES</button></td>
+                                <td style={tdStyle} ><button  disabled={item.at=="Yet to acknowledge"} onClick={()=> sendord(item)}>YES</button></td>
                             </tr>
                             
                         ))

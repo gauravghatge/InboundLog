@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from "axios";
 import qs from "qs";
 
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 
@@ -56,15 +57,19 @@ const LoginAsse=()=>{
   else{
 
     if(inputtext.username=="sk@gmail.com" && inputtext.password=="test"){
+      localStorage.setItem("role","store")
+      localStorage.setItem("aot","true")
       history('/warehousehome');
     }
 
     if(inputtext.username=="tr@gmail.com" && inputtext.password=="test"){
+      localStorage.setItem("role","trans")
+      localStorage.setItem("aot","true")
       history('/transporterhome');
     }
     
 
-    console.log("Hii");
+    
 
     var data = qs.stringify({
       'username': inputtext.username,
@@ -85,6 +90,8 @@ const LoginAsse=()=>{
     .then(function (response) {
       const d=JSON.stringify(response.data);
       if(response.data.success){
+        localStorage.setItem("role","assem")
+        localStorage.setItem("aot","true")
         history('/ass');
       }else{
         settr("Username or password is Incorrect");
