@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TotalOrd from './TotalOrd'
-import Mapper from './Mapper'
+import MapperAsse from './MapperAsse'
 import MainNavAssem from './MainNavAssem'
 import {useLocation} from 'react-router-dom';
  const AsHome =()=> {
@@ -12,7 +12,7 @@ import {useLocation} from 'react-router-dom';
                 <MainNavAssem data={location.state.name}/>
                 <div style={{width:"100%",height:"100vh",display:"flex",paddingTop:"5"}}>
                 <div style={{width:"50%"}}>
-                <Mapper />
+                <MapperAsse />
                     </div>
                     <div style={{width:"50%"}}>
                     <TotalOrd />
