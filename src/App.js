@@ -37,9 +37,9 @@ const auth = true;
         <Route exact path="/test" element={<AsHome />} />
        
 
-        <Route  path='ass' > {auth ? <Asscode/> : <Navigate to="/"></Navigate> }
+        <Route  path='ass' element= {auth ? <Asscode/> : <Navigate to="/"></Navigate> }></Route>
 
-          </Route>
+        
 
         <Route exact path="assemblyhome" element={<AsHome />} />
         <Route exact path="warehousehome" element={<StoreHome />} />
