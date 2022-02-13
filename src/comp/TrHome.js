@@ -3,7 +3,9 @@ import TabTr from './TabTr'
 import Mapper from './Mapper'
 import MainNavTr from './MainNavTr'
 export default class TrHome extends Component {
+    
     render() {
+        console.log(localStorage.getItem('username'));
         return (
             <>
                 <MainNavTr />

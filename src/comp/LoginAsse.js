@@ -59,13 +59,18 @@ const LoginAsse=()=>{
     if(inputtext.username=="sk@gmail.com" && inputtext.password=="test"){
       localStorage.setItem("role","store")
       localStorage.setItem("aot","true")
+      localStorage.setItem('username','warehouse');
       history('/warehousehome');
+      
     }
 
     if(inputtext.username=="tr@gmail.com" && inputtext.password=="test"){
       localStorage.setItem("role","trans")
       localStorage.setItem("aot","true")
+      localStorage.setItem('username','transporter');
+      console.log(localStorage.getItem('username'))
       history('/transporterhome');
+
     }
     
 
@@ -92,6 +97,7 @@ const LoginAsse=()=>{
       if(response.data.success){
         localStorage.setItem("role","assem")
         localStorage.setItem("aot","true")
+        localStorage.setItem('username','assembly');
         history('/ass');
       }else{
         settr("Username or password is Incorrect");

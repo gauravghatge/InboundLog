@@ -13,7 +13,7 @@ alert(val);
     navigate('/assemblyhome',{state:{id:1,name:val}})
   }
 
-  
+  console.log(localStorage.getItem('username'));
     return (
       <div style={{width:"100%"}}>
         <h3 style={{paddingTop:"10%"}}>Select Your Assembly Area</h3>
