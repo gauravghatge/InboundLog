@@ -57,9 +57,74 @@ console.log("Data send")
 console.log(error);
 });
 
+//adding to ords for filtering
+
+
+var data2 = { "entityid":"2206",
+"entityName":"Ordconfirm",
+    "entityTag":"Generic",
+"gatewayid":"Sub_Assembly_Parking",
+    "status":false,
+      "datastreams":[{ "name":"ords",
+                  "value":`${item.orderid}`,
+                  "units":"",            "ContentFormat":"",
+                  "type": "String"        }      ]};
+var config = {
+method: 'post',
+url: 'https://wadiacsi1.cognitonetworks.com/cognito/entitycore/2206',
+headers: { 
+'Apikey': 'K9MkyEo5fM0YracivwW3', 
+'Authorization': 'K9MkyEo5fM0YracivwW3 5xn-c646006da1934235e084 81 111', 
+'Content-Type': 'text/plain'
+},
+data : data2
+};
+
+axios(config)
+.then(function (response) {
+console.log(JSON.stringify(response.data));
+console.log("Data sent to ords")
+})
+.catch(function (error) {
+console.log(error);
+});
+
+
  }
  
     useEffect(()=>{
+        var config = {
+            method: 'get',
+            url: 'https://wadiacsi1.cognitonetworks.com/cognito/entityweb/strdatastreamTimeGraph/2206/?entity_id=2206&name=ords&start_date=2021-12-31%2011:17:00&end_date=2022-02-07%2007:05:50',
+            headers: { 
+              'Authorization': 'K9MkyEo5fM0YracivwW3 5xn-c646006da1934235e084 81 111'
+            }
+          };
+            let check;       
+          axios(config)
+          .then(function (response) {
+            console.log((response.data));
+            const data=[]
+                          response.data.forEach(
+                              doc=>{
+                                  var s = doc.value;
+                                  var match = s.split(';')
+                                  let p = match[0];
+                                  data.push(p)
+                              }
+                          )
+                          console.log((data));
+                          
+                          check=data;
+                         
+          
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+
+
         var config = {
           method: 'get',
           url: 'https://wadiacsi1.cognitonetworks.com/cognito/entityweb/strdatastreamTimeGraph/2203/?entity_id=2203&name=Current_Order&start_date=2021-12-31%2011:17:00&end_date=2022-02-07%2007:05:50',
@@ -72,25 +137,50 @@ console.log(error);
         .then(function (response) {
           console.log((response.data));
           const data=[]
+          const m = new Map()
                         response.data.forEach(
                             doc=>{
+                                
                                 var s = doc.value;
-                                var match = s.split(';')
-                                let p = {orderid:match[0], aa:match[1],ai:match[2], pt:match[3],at:match[4],st:match[5],park:match[6]};
-                                data.push(p)
+                                var match = s.split(';');
+                                if(!check.includes(match[0])){
+                                    console.log(match[0]);
+                                    let p = {orderid:match[0], aa:match[1],ai:match[2], pt:match[3],at:match[4],st:match[5],park:match[6]};
+                                    data.push(p)    
+                                }
+                                
                             }
                         )
-                        console.log((data));
                         
-                        setorders(data)
                        
-        
+                        data.forEach(
+                            d => {
+                                m.set(d.orderid,d)
+                            }
+                        )
+
+
+                        let final_data = [];
+                        Array.from(m.entries()).map((entry) => {
+                            const [key, value] = entry;
+                            final_data.push(value);
+                        })
+
+                        
+
+
+                        setorders(final_data)
         })
         .catch(function (error) {
           console.log(error);
         });
         
         },[])
+
+
+        
+
+
 
           return (
        <> 
@@ -119,7 +209,7 @@ console.log(error);
                                 
                                 <td style={tdStyle}>{item.at}</td>
                                
-                                <td style={tdStyle} ><button  disabled={item.at=="Yet to acknowledge"} onClick={()=> sendord(item)}>YES</button></td>
+                                <td style={tdStyle} ><button disabled={item.at=="Yet to acknowledge"} onClick={()=> sendord(item)}>YES</button></td>
                             </tr>
                             
                         ))
@@ -133,3 +223,4 @@ console.log(error);
     
 
 export default TotalOrd;
+// 

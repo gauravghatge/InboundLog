@@ -27,7 +27,45 @@ const thStyle = {
 
 
 
+
+
+
  const TotalOrd =()=> {
+
+
+    const sendord=(item)=>{
+        var data = { "entityid":"2203",
+        "entityName":"Curr_Order1",
+            "entityTag":"Generic",
+        "gatewayid":"Sub_Assembly_Parking",
+            "status":false,
+              "datastreams":[{ "name":"Current_Order",
+                          "value":`${item.orderid};${item.aa};${item.ai};${item.pt};${new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now())};No;${item.park}`,
+                          "units":"",            "ContentFormat":"",
+                          "type": "String"        }      ]};
+    var config = {
+  method: 'post',
+  url: 'https://wadiacsi1.cognitonetworks.com/cognito/entitycore/2203',
+  headers: { 
+    'Apikey': 'K9MkyEo5fM0YracivwW3', 
+    'Authorization': 'K9MkyEo5fM0YracivwW3 5xn-c646006da1934235e084 81 111', 
+    'Content-Type': 'text/plain'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+}); 
+     }
+
+
+
+
     
        
 //   const data = [
@@ -65,7 +103,7 @@ useEffect(()=>{
                         doc=>{
                             var s = doc.value;
                             var match = s.split(';')
-                            let p = {orderid:match[0], aa:match[1],ai:match[2],park:match[6]};
+                            let p = {orderid:match[0], aa:match[1],ai:match[2],pt:match[3],park:match[6]};
                             data.push(p)
                         }
                     )
@@ -110,7 +148,7 @@ useEffect(()=>{
                                 <td style={tdStyle} >{item.aa}</td>
                                 
                                 
-                                <td style={tdStyle}><button>YES</button></td>
+                                <td style={tdStyle}><button   onClick={()=> sendord(item)}>YES</button></td>
          
                             </tr>
                             
