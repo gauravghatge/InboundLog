@@ -59,7 +59,9 @@ const LoginAsse=()=>{
     if(inputtext.username=="sk@gmail.com" && inputtext.password=="test"){
       localStorage.setItem("role","store")
       localStorage.setItem("aot","true")
+      
       localStorage.setItem('username','warehouse');
+      localStorage.getItem('username');
       history('/warehousehome');
       
     }

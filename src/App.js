@@ -26,13 +26,12 @@ const auth = true;
     <Fragment>
       <Routes>
         <Route exact path="/" element={<LoginAsse />} />
-        <Route  path='ass' element= {localStorage.getItem('username')=='assembly' ? <Asscode/> : <Navigate to="/"></Navigate> }></Route>
-        <Route exact path="assemblyhome" element={localStorage.getItem('username')=='assembly' ? <AsHome/> : <Navigate to="/"></Navigate> } />
-        <Route exact path="warehousehome" element={localStorage.getItem('username')=='warehouse' ? <StoreHome /> : <Navigate to="/"></Navigate>} />
-        <Route exact path="transporterhome" element={(
-          (localStorage.getItem('username')=='transporter' ? <TrHome /> : <Navigate to="/"></Navigate>))} />
-        <Route exact path="assemblyorderlog" element={localStorage.getItem('username')=='assembly' ? <AsseOrder /> : <Navigate to="/"></Navigate>} />
-        <Route exact path="transporterorderlog" element={localStorage.getItem('username')=='warehouse' ? <TrOrder /> : <Navigate to="/"></Navigate>} />
+        <Route  path='ass' element= { <Asscode/> }  ></Route>
+        <Route exact path="assemblyhome" element={ <AsHome/>  } />
+        <Route exact path="warehousehome" element={<StoreHome /> } />
+        <Route exact path="transporterhome" element={ <TrHome /> } />
+        <Route exact path="assemblyorderlog" element={<AsseOrder /> } />
+        <Route exact path="transporterorderlog" element={<TrOrder /> } />
       </Routes>
       </Fragment>
       </BrowserRouter>  

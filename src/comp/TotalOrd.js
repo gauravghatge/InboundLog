@@ -108,7 +108,7 @@ console.log(error);
                     <th style={thStyle}>Delivery Confirmation Status</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody>  
                     {
                         allorders.map((item) => (
                             <tr key={item.id}>
