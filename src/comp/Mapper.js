@@ -1,6 +1,14 @@
 import React,{useEffect,useState} from 'react';
 import ImageMapper from 'react-img-mapper';
 import axios from 'axios';
+
+
+
+import Tooltip from '@mui/material/Tooltip';
+
+
+
+
 const clicked=()=>{
   alert("Hello World!");
 }
@@ -91,19 +99,33 @@ axios(config1)
     //{ name: "1", shape: "rect", coords: [sp[0].x1,y,x2,y2], preFillColor: "green", fillColor: "blue" , orderid:"123" }
     areas: sp
   };
-  const [hoveredArea, sethoverArea] = useState(null);
+const [hoveredArea, sethoverArea] = useState(null);
 
 const getTipPosition=(area)=> {
-  return { top: `${area.center[1]}px`, left: `${area.center[0]}px` };
+  return { top: "200px", left:"200px"  };
 }
   return(
 
     Loading?<h3>Loading spots...</h3>:<>
-    <h3>Parking Area</h3>
-  <div style={{overflowX:"auto",width:"70%",overflowY:"auto",height:"450px",marginRight:"15%",marginLeft:"15%"}}>
     
+    
+    <h3>Parking Area</h3>
+    
+      
+    
+  <div style={{overflowX:"auto",width:"70%",overflowY:"auto",height:"450px",marginRight:"15%",marginLeft:"15%"}}>
+  
     <ImageMapper src={URL} map={MAP} onClick={area => alert(area.ai)} 
-    onMouseEnter={area => {seth(area.ai)}} onMouseLeave={area => sethoverArea(null)}/>
+    onMouseEnter={area => {sethoverArea(area)}} onMouseLeave={area => sethoverArea(null)  }/>
+
+    {
+    	hoveredArea &&
+    	<span className="tooltip"
+    	    style={{ ...getTipPosition(hoveredArea)}}>
+    		  { hoveredArea && hoveredArea.name}
+    	</span>
+    }
+
     
     
     </div>

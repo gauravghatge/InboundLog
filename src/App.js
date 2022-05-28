@@ -12,6 +12,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import TrOrder from './comp/TrOrder';
 import StoreHome from './comp/StoreHome';
 import {Fragment} from "react"
+import AdminPanel from './comp/AdminPanel';
 
 
 
@@ -25,6 +26,7 @@ const auth = true;
     <BrowserRouter>
     <Fragment>
       <Routes>
+        <Route exact path="adminpanel" element={<AdminPanel />} />
         <Route exact path="/" element={<LoginAsse />} />
         <Route  path='ass' element= { <Asscode/> }  ></Route>
         <Route exact path="assemblyhome" element={ <AsHome/>  } />

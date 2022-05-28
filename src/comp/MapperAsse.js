@@ -1,20 +1,12 @@
 import React,{useEffect,useState} from 'react';
 import ImageMapper from 'react-img-mapper';
 import axios from 'axios';
+import { useCookies } from "react-cookie";
 
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-
+import { withCookies } from "react-cookie"; 
 import { confirm } from "react-confirm-box";
 
-
-      
-      
-  
+ 
 const clicked=()=>{
   alert("Hello World!");
 }
@@ -23,7 +15,7 @@ const clickedon=(area)=>{
   clicked();
 }
   const MapperAsse = props => {
-    
+  const [cookies, setCookie] = useCookies();  
 
     const URL = '/parking.jpeg';
   
@@ -32,7 +24,9 @@ const clickedon=(area)=>{
   const [y2, sety2] = useState(81);
   const [sp, setsp] = useState([])
   const [Loading,setLoading]=useState(true)
+  
   useEffect(()=>{
+    console.log(cookies.user)
     var config = {
       method: 'get',
       url: 'https://wadiacsi1.cognitonetworks.com/cognito/entityweb/strdatastreamTimeGraph/2195/?entity_id=2195&name=Parking_Inf&start_date=2021-12-31%2011:17:00&end_date=2022-02-07%2007:05:50',
@@ -143,14 +137,17 @@ const result = await confirm(`Do you want to order following asset:${tt}`, ops);
 
 
 
+
+
   if (result) {
+    var c = new Intl.DateTimeFormat('en-US', {year: 'numeric',day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now())
     var data = { "entityid":"2203",
         "entityName":"Curr_Order1",
             "entityTag":"Generic",
         "gatewayid":"Sub_Assembly_Parking",
             "status":false,
               "datastreams":[{ "name":"Current_Order",
-                          "value":`A456_${new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now())};A456;${objo.ai};${new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now())};Yet to acknowledge;No;${objo.pa}`,
+                          "value":`${cookies.user}_${c.slice(3,5)+'/'+c.slice(0,2) +'/'+c.slice(6,23)};${cookies.user};${objo.ai};${c.slice(3,5)+'/'+c.slice(0,2) +'/'+c.slice(6,23)};Yet to acknowledge;No;${objo.pa}`,
                           "units":"",            "ContentFormat":"",
                           "type": "String"        }      ]};
     var config = {
@@ -171,45 +168,67 @@ axios(config)
 .catch(function (error) {
   console.log(error);
 });
+window.location.reload(false);
+
     return;
   }
   
 };
 const [h, seth] = useState("");
 const [tr, settr] = useState("");
+const [show, setshow] = useState("none");
 const optionsWithClonOnOverlayclick = {
   closeOnOverlayClick: true
 };
 let tt;
 let objo
 const setchange=(area)=>{
-objo=area;
+  objo=area;
   tt=area.ai;
   console.log(tt);
 }
+
+
+const onent = (area) =>{
+seth(area.ai);
+setshow("flex")
+
+}
+
+const onleave = () =>{
+  seth(" ");
+  setshow("none")
+  
+  }
+
   return(
 
-    Loading?<h3>Loading spots...</h3>:<>
+
+    Loading?<h3>Loading spots...</h3>:<div style={{position:"relative"}}>
     
     
     <h3>Parking Area</h3>
+    
   <div style={{overflowX:"auto",width:"70%",overflowY:"auto",height:"450px",marginRight:"15%",marginLeft:"15%"}}>
     
+    <div style={{alignItems:"center",fontSize:"20px",justifyContent:"center",position:"absolute",zIndex:"20", top:"9%",left:"70%",backgroundColor:"white",width:"20%",height:"20%",display:`${show}`,  border:"4px solid blue"}}> {h}</div>
     <ImageMapper src={URL} map={MAP} onClick={(area) => {
               setchange(area);
-                   
+                  
               onClick(optionsWithClonOnOverlayclick);
               
             }} 
             
-    onMouseEnter={area => {seth(area.ai)}} />
+    onMouseEnter={area => { onent(area)}}
+    onMouseLeave = {area => {onleave()}}
+    />
     
     
     </div>
     
 
-    <h4>Current Asset: {h}</h4>
-    </>
+    
+    </div>
   )
 }
 

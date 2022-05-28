@@ -25,14 +25,17 @@ const thStyle = {
     color: 'white',
     padding: '5px',
     marginLeft:'auto',
-    marginRight:'auto' 
+    marginRight:'auto',
+    position:'sticky',
+    top:'0'  
 };
 
 
 
 
- const Table=()=> {
-    const [allorders, setorders] = useState([])    
+const Table=()=> {
+const [allorders, setorders] = useState([])
+
 useEffect(()=>{
 var config = {
   method: 'get',
@@ -42,22 +45,39 @@ var config = {
   }
 };
 
+
 axios(config)
 .then(function (response) {
   console.log((response.data));
   const data=[]
+  var data1 = {}
                 response.data.forEach(
                     doc=>{
                         var s = doc.value;
                         var match = s.split(';')
-                        let p = {orderid:match[0], pa:match[1],assar:match[2], ai:match[3],pt:match[4],at:match[5],aby:match[6],dt:match[7]};
-                        data.push(p)
+                        let p = {orderid:match[0], pa:match[1],assar:match[2], ai:match[3],pt:match[4],at:match[5],dt:match[6]};
+                        data1[match[0]] = p
                     }
                 )
-                console.log((data));
-                
+                        var expData = []
+                        console.log(data1)
+                        Object.keys(data1).forEach(d=>expData.push(data1[d]))
+                        
+                        function compare( a, b ) {
+                            if ( a.pt > b.pt ){
+                              return -1;
+                            }
+                            if ( a.pt < b.pt ){
+                              return 1;
+                            }
+                            return 0;
+                          }
+                          
+                          expData.sort( compare );
 
-                setorders(data)
+
+
+                        setorders(expData)
                
 
 })
@@ -86,7 +106,7 @@ axios(config)
         return (
        <> 
             
-            <div style={{overflowX:"auto",width:"90%",overflowY:"auto",height:"50%",marginLeft:"5%"}}>
+            <div style={{overflowX:"auto",width:"100%",overflowY:"auto",height:"80vh"}}>
                 <table  style={tableStyle}>
                 <thead>
                 <tr>
@@ -115,7 +135,7 @@ axios(config)
                                 <td style={tdStyle}>{item.ai}</td>
                                 <td style={tdStyle}>{item.pt}</td>
                                 <td style={tdStyle}>{item.at}</td>
-                                <td style={tdStyle}>{item.aby}</td>
+                                <td style={tdStyle}>{item.assar}</td>
                                 <td style={tdStyle}>{item.dt}</td> 
                             </tr>
                             

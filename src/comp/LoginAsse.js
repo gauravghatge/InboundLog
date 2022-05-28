@@ -1,19 +1,8 @@
-import React, { Component } from "react";
-import IconButton from "@material-ui/core/IconButton";
-import InputLabel from "@material-ui/core/InputLabel";
-import Visibility from "@material-ui/icons/Visibility";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import Input from "@material-ui/core/Input";
-import { createBrowserHistory as history} from 'history';
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from "axios";
 import qs from "qs";
-
-
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { useCookies } from "react-cookie";
 
 const LoginAsse=()=>{
   const history= useNavigate();
@@ -65,6 +54,16 @@ const LoginAsse=()=>{
       history('/warehousehome');
       
     }
+    if(inputtext.username=="admin@gmail.com" && inputtext.password=="test"){
+      localStorage.setItem("role","admin")
+      localStorage.setItem("aot","true")
+      
+      localStorage.setItem('username','warehouse');
+      localStorage.getItem('username');
+      history('/adminpanel');
+      
+    }
+
 
     if(inputtext.username=="tr@gmail.com" && inputtext.password=="test"){
       localStorage.setItem("role","trans")
@@ -131,6 +130,19 @@ const LoginAsse=()=>{
   }
   }
   
+  const [cookies, setCookie] = useCookies(["timeout"]);
+
+  useEffect(() => {
+    //Runs only on the first render
+
+
+    setCookie("timeout", 20, {
+      path: "/"
+    });
+
+  }, []);
+
+
   
   return(
   <>
