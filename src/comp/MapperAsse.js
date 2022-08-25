@@ -44,7 +44,7 @@ const clickedon=(area)=>{
               var s = doc.value;
               var match = s.split(';')
               var col = match[7] == "NULL" ? "red": "green"
-              p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: col, fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8]}
+              p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: col, fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8],entity:match[9]}
   
           }
       )
@@ -76,7 +76,7 @@ axios(config1)
                         var s = doc.value;
                         var match = s.split(';')
                         var col = match[7] == "NULL" ? "red": "green"
-                        p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: col, fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8]}
+                        p = {name: "1", shape: "rect", coords: [match[0],match[1],match[2],match[3]], preFillColor: col, fillColor: "blue" , tri:match[4],pt:match[5],rt:match[6],ai:match[7],pa:match[8],entity:match[9]}
                         
                     }
                 )
@@ -170,6 +170,37 @@ axios(config)
 });
 window.location.reload(false);
 
+
+
+var data = `{\n    "entityid":${objo.entity},\n    "entityName":"Curr_Order1",\n    "entityTag":"Generic",\n    "gatewayid":"Sub_Assembly_Parking",\n    "status":false,\n    "datastreams":[\n        {\n            "name":"Parking_Inf",\n            "value":"${objo.coords[0]};${objo.coords[1]};${objo.coords[2]};${objo.coords[3]};T676;21-12-2021 12:20:23;21-12-2021 12:20:23;NULL;${objo.pa};${objo.entity}",\n            "units":"",\n            "ContentFormat":"",\n            "type": "String"\n        }  \n    ]\n}`;
+
+var config = {
+  method: 'post',
+  url: `https://wadiacsi1.cognitonetworks.com/cognito/entitycore/${objo.entity}`,
+  headers: { 
+    'Apikey': 'K9MkyEo5fM0YracivwW3', 
+    'Authorization': 'K9MkyEo5fM0YracivwW3 5xn-c646006da1934235e084 81 111', 
+    'Content-Type': 'text/plain'
+  },
+  data : data
+};
+
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+
+
+
+
+
+
+
+
     return;
   }
   
@@ -181,10 +212,13 @@ const optionsWithClonOnOverlayclick = {
   closeOnOverlayClick: true
 };
 let tt;
+let entitydel;
+
 let objo
 const setchange=(area)=>{
   objo=area;
   tt=area.ai;
+  entitydel = area.entity;
   console.log(tt);
 }
 

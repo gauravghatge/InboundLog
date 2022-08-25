@@ -24,9 +24,7 @@ class SimplenavTr extends React.Component{
                                     
                                 </Navbar.Collapse>
                             </Navbar>
-                         
-                            
-                        
+                             
                     </div>
                 </div>
             </div>
